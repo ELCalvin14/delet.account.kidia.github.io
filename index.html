@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solicitud de Eliminación de Cuenta - MiApp</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px 30px;
+    }
+    h1 {
+      color: #004aad;
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      background: #004aad;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+    button:hover {
+      background: #003b8e;
+    }
+    .info {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Solicitud de Eliminación de Cuenta</h1>
+    <form id="deleteForm">
+      <label for="email">Correo Electrónico</label>
+      <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required>
+
+      <label for="nombre">Nombre Completo</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+
+      <label for="motivo">Razón para eliminar la cuenta</label>
+      <textarea id="motivo" name="motivo" placeholder="Explica por qué deseas eliminar tu cuenta" required></textarea>
+
+      <button type="submit">Enviar Solicitud</button>
+    </form>
+    <div class="info">
+      <p>Recibirás una respuesta en un lapso de 2 a 5 días hábiles.</p>
+      <p>Si tienes dudas, contacta a soporte: <strong>kidia.tamps@gmail.com</strong></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('deleteForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Evita el envío convencional del formulario
+
+      // Extrae los datos del formulario
+      const email = document.getElementById('email').value;
+      const nombre = document.getElementById('nombre').value;
+      const motivo = document.getElementById('motivo').value;
+
+      // Construye el cuerpo del correo (puedes adaptarlo a tus necesidades)
+      const body = encodeURIComponent(
+        `Nombre: ${nombre}\nCorreo: ${email}\nMotivo para eliminar la cuenta:\n${motivo}`
+      );
+
+      // Abre el cliente de correo con mailto
+      window.location.href = `mailto:tucorreo@dominio.com?subject=Solicitud%20de%20eliminación%20de%20cuenta&body=${body}`;
+
+      // Después de 1 segundo, redirige a la página de confirmación
+      setTimeout(() => {
+        window.location.href = "confirmation.html";
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
